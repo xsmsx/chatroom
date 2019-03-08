@@ -1,0 +1,79 @@
+ * { margin: 0; padding: 0; box-sizing: border-box;,white-space: nowrap;,list-style: none;}
+
+ body {font: 20px; font-family: NotoSansJP,Slack-Lato,appleLogo,sans-serif }
+
+
+.chatRoom{
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-gap: 1rem;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border-style: solid;
+    border-color: #303030;
+    background-color: #F1F1F1;
+}
+.chatHeader{
+    padding: 5px;
+    grid-column: 1/9;
+    grid-row: 1/1;
+    background-color: #F1F1F1;
+}
+.onlineHeader{
+    padding: 5px;
+    grid-column: 9/13;
+    grid-row: 1/1;
+    background-color: #F1F1F1;
+}
+.chat{
+    background: #818181;
+    grid-column: 1/9;
+    grid-row: 2/2;
+    height: 600px;
+    overflow-x:scroll;
+    overflow-y:scroll;
+    position:relative;
+    align-content: end;
+}
+ .onlineUsers{
+     background: #818181;
+     grid-column: 9/13;
+     grid-row: 2/2;
+     overflow-x:scroll;
+     overflow-y:scroll;
+     position:relative;
+     align-content: end;
+ }
+ #messages {
+     position:absolute;
+     bottom:0px;
+     left:0px;
+     overflow-y:scroll;
+     overflow-x:scroll;
+}
+#onlineList{
+  position:absolute;
+   bottom:0px;
+   left:0px;
+   overflow-y:scroll;
+   overflow-x:scroll;
+}
+
+.inputBar{
+    background: #F1F1F1;
+    display: grid;
+    grid-column: span 12;
+    grid-gap: 10px;
+    height: 40px;
+}
+
+#m{
+    background: white;
+    grid-column: span 2;
+    align-self: center;
+    justify-self: center;
+    width: 99%;
+    height: 30px;
+}
+

@@ -85,13 +85,12 @@ io.on('connection', function(socket){
   // process nickname or color change requests
   socket.on('update', function(socketData){
     console.log("Change name or color called from"+ socketData.socketID);
-    console.log(socketData);
+    //console.log(socketData);
     clientNames[socketData.socketID] = socketData.newName;
-    console.log(clientNames);
+    console.log("client names before updating online: ", clientNames);
     clientColors = socketData.clients;
     io.emit('updateAll', socketData);
-    console.log("before updating online: ", clientColors);
-    console.log(clientColors);
+    console.log("client colors before updating online: ", clientColors);
     io.emit("onlineList", clientColors);
   });
 });

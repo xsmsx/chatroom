@@ -29,7 +29,8 @@ socket.on('init', function(serverData) {
         });
     }
     else{
-        username.innerHTML ='<p> Welcome! You are user  <strong>'+ serverData.user +'</strong></p>';
+        socket.emit('noCookie');
+        username.innerHTML ='<p> Welcome! You are user  <strong>'+ serverData.socketID +'</strong></p>';
         username.scrollTo(0,document.body.scrollHeight);
         thisUser = serverData.socketID;
         thisColor = '#'+ serverData.color;

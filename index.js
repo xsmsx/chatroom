@@ -38,15 +38,11 @@ io.on('connection', function(socket){
     color: clientColor
   });
 
-  console.log("initial clientColors: ", clientColors);
-
-  socket.emit("onlineList", clientColors);
-
   // add above info into dictionaries and arrays to store on server end
   clientNames[socket.id] = socket.id;
   clientColors[socket.id] = clientColor;
 
-  // resume session if client cookie found
+  // resume session if client cookie found & update online list
   socket.on('hasCookie', function(cookieData){
     for (n in clientNames){
       if (n === cookieData.serverUser){
@@ -57,6 +53,12 @@ io.on('connection', function(socket){
     }
     console.log("clientNames {}: ", clientNames);
     console.log("clientcolors {}: ", clientColors);
+    socket.emit("onlineList", clientColors);
+  });
+
+  // update online list
+  socket.on('noCookie', function(){
+    socket.emit("onlineList", clientColors);
   });
 
   // delete user from the managed online lists on disconnect
@@ -64,6 +66,7 @@ io.on('connection', function(socket){
     console.log('user disconnected, socket id: ' + socket.id);
     delete clientColors[socket.id];
     delete clientNames[socket.id];
+    socket.emit("onlineList", clientColors);
   });
 
   // calculate timestamp & send new chat message
@@ -83,6 +86,7 @@ io.on('connection', function(socket){
     console.log(clientNames);
     clientColors = socketData.clients;
     io.emit('updateAll', socketData);
+    console.log("before updating online: ", clientColors);
     io.emit("onlineList", clientColors);
   });
 

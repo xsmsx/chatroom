@@ -56,8 +56,8 @@ newMessage.addEventListener("keyup", function(event){
             let temp = namePattern.exec(test[1]);
             let newName = temp[1].toString();
             // check duplicates
-            console.log("clients: ");
-            console.log(clients);
+            console.log("checking");
+            console.log("clients: ", clients);
             for (c in clients){
                 if (c === newName){
                     console.log("aha");
@@ -65,6 +65,7 @@ newMessage.addEventListener("keyup", function(event){
                     return;
                 }
             }
+            console.log("new name", newName);
             changeName(newName);
             $('#m').val('');
             return;
@@ -109,6 +110,7 @@ socket.on('onlineList', function(onlineUsers) {
         temp += '<li>'+'<span style=\"color:' + '#'+onlineUsers[u] + '\">' + u +'</li>';
     }
     onlineList.innerHTML = temp;
+    clients = onlineUsers;
 });
 
 // update name or color as well as the online user list

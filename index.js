@@ -40,11 +40,11 @@ io.on('connection', function(socket){
 
   // add above info into dictionaries and arrays to store on server end
   clientNames[socket.id] = socket.id;
-  clientColors[socket.id] = clientColor;
+  clientColors[socket.id] = '#'+clientColor;
 
   // for new session: update online list
   socket.on('noCookie', function(){
-    clientColors[socket.id] = clientColor;
+    clientColors[socket.id] = '#'+clientColor;
     clientNames[socket.id] = socket.id;
     io.emit("onlineList", clientColors);
   });
@@ -54,7 +54,7 @@ io.on('connection', function(socket){
     for (c in clientColors){
       if (c === cookieData.serverUser){
         delete clientColors[c];
-        clientColors[cookieData.savedUsername] = cookieData.savedColor;
+        clientColors[cookieData.savedUsername] = '#'+cookieData.savedColor;
       }
     }
     for (n in clientNames){
@@ -85,7 +85,7 @@ io.on('connection', function(socket){
   // process nickname or color change requests
   socket.on('update', function(socketData){
     console.log("Change name or color called from"+ socketData.socketID);
-    //console.log(socketData);
+    console.log(socketData);
     clientNames[socketData.socketID] = socketData.newName;
     console.log("client names before updating online: ", clientNames);
     clientColors = socketData.clients;

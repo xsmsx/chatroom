@@ -105,10 +105,11 @@ socket.on('chat message', function(msg){
 
 // update onine user list
 socket.on('onlineList', function(onlineUsers) {
+    console.log("onlineUsers in client", onlineUsers);
     clients = onlineUsers;
     let temp = '';
     for(u in onlineUsers){
-        temp += '<li>'+'<span style=\"color:' + '#'+onlineUsers[u] + '\">' + u +'</li>';
+        temp += '<li>'+'<span style=\"color:' + onlineUsers[u] + '\">' + u +'</li>';
     }
     onlineList.innerHTML = temp;
 });
@@ -151,7 +152,8 @@ function changeName() {
 
 function changeColor(){
     let newColor = String(arguments[0]);
-    clients[thisUser] = newColor;
+    thisColor = "#"+ newColor;
+    clients[thisUser] = thisColor;
     socket.emit('update',{
         flag : 1,
         name: thisUser,
@@ -159,7 +161,6 @@ function changeColor(){
         socketID: socketID,
         clients: clients
     });
-    thisColor = "#"+ newColor;
     document.cookie = "myColor=" + newColor; //update cookie with new username
 }
 

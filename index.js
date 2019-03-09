@@ -25,7 +25,7 @@ io.on('connection', function(socket){
 
   // recover entire chat history
   chatLog.forEach(function(msg){
-    io.emit('chat message', msg)
+    socket.emit('chat message', msg)
   });
 
   // add new socket to client list

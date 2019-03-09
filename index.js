@@ -63,6 +63,7 @@ io.on('connection', function(socket){
 
   // update online list
   socket.on('noCookie', function(){
+    clientColors[socket.id] = clientColor;
     io.emit("onlineList", clientColors);
     console.log(" ");
     console.log("NEW session for new user: ", socket.id);

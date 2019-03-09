@@ -29,7 +29,8 @@ socket.on('init', function(serverData) {
         });
     }
     else{
-        socket.emit('noCookie');
+        socket.emit('noCookie',{});
+        console.log("TEST!!!");
         username.innerHTML ='<p> Welcome! You are user  <strong>'+ serverData.socketID +'</strong></p>';
         username.scrollTo(0,document.body.scrollHeight);
         thisUser = serverData.socketID;

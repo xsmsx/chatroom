@@ -23,9 +23,9 @@ const port = process.env.PORT || 3000;
 io.on('connection', function(socket){
   console.log('made callback connection on socket id: ', socket.id);
 
-  // recover chat history
+  // recover entire chat history
   chatLog.forEach(function(msg){
-    socket.emit('chat message', msg)
+    io.emit('chat message', msg)
   });
 
   // add new socket to client list
@@ -33,7 +33,7 @@ io.on('connection', function(socket){
 
   // generate initial random name using the socket id and generate random color & send over socket
   let clientColor = ((1<<24)*Math.random()|0).toString(16);
-  socket.emit('init',{
+  io.emit('init',{
     socketID: socket.id,
     color: clientColor
   });
@@ -47,35 +47,59 @@ io.on('connection', function(socket){
     for (n in clientNames){
       if (n === cookieData.serverUser){
         delete clientNames[n];
+        delete clientColors[n];
         clientNames[cookieData.serverUser] = cookieData.savedUsername;
-
+        clientColors[cookieData.savedUsername] = cookieData.savedColor;
       }
     }
-    console.log("clientNames {}: ", clientNames);
-    console.log("clientcolors {}: ", clientColors);
-    socket.emit("onlineList", clientColors);
+    console.log(" ");
+    console.log("resuming session for return user: ", cookieData.savedUsername);
+    console.log("clientColors after cookie:");
+    console.log(clientColors);
+    console.log("clientNames after cookie:");
+    console.log(clientNames);
+    io.emit("onlineList", clientColors);
   });
 
   // update online list
   socket.on('noCookie', function(){
-    socket.emit("onlineList", clientColors);
+    io.emit("onlineList", clientColors);
+    console.log(" ");
+    console.log("NEW session for new user: ", socket.id);
+    console.log("clientColors after cookie:");
+    console.log(clientColors);
+    console.log("clientNames after cookie:");
+    console.log(clientNames);
   });
 
   // delete user from the managed online lists on disconnect
   socket.on('disconnect', function() {
     console.log('user disconnected, socket id: ' + socket.id);
-    delete clientColors[socket.id];
+    console.log("clientColors before:");
+    console.log(clientColors);
+    console.log("clientNames before:");
+    console.log(clientNames);
+    let temp = clientNames[socket.id];
+    delete clientColors[temp];
     delete clientNames[socket.id];
-    socket.emit("onlineList", clientColors);
+    console.log("clientColors after:");
+    console.log(clientColors);
+    console.log("clientNames after:");
+    console.log(clientNames);
+    console.log("deleting user from online list...");
+    io.emit("onlineList", clientColors);
   });
 
   // calculate timestamp & send new chat message
   socket.on('chat message', function(msg){
     let now = new Date();
     msg["timestamp"] = now.toString();
-    // console.log(msg);
     chatLog.push(msg);
     io.emit('chat message', msg);
+    console.log("clientColors in SENDING:");
+    console.log(clientColors);
+    console.log("clientNames in SENDING:");
+    console.log(clientNames);
   });
 
   // process nickname or color change requests
@@ -89,7 +113,6 @@ io.on('connection', function(socket){
     console.log("before updating online: ", clientColors);
     io.emit("onlineList", clientColors);
   });
-
 });
 
 server.listen(port, function(){

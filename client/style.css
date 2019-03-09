@@ -1,7 +1,10 @@
  * { margin: 0; padding: 0; box-sizing: border-box;,white-space: nowrap;,list-style: none;}
 
- body {font: 20px; font-family: NotoSansJP,Slack-Lato,appleLogo,sans-serif }
+ body {font: 20px; font-family: NotoSansJP,Slack-Lato,appleLogo,sans-serif; scroll-bar-width: none;}
 
+ ::-webkit-scrollbar{
+     display: none;
+ }
 
 .chatRoom{
     display: grid;

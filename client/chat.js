@@ -54,6 +54,8 @@ newMessage.addEventListener("keyup", function(event){
             let temp = namePattern.exec(test[1]);
             let newName = temp[1].toString();
             // check duplicates
+            console.log("clients: ");
+            console.log(clients);
             for (c in clients){
                 if (c === newName){
                     console.log("aha");
@@ -100,8 +102,6 @@ socket.on('chat message', function(msg){
 
 // update onine user list
 socket.on('onlineList', function(onlineUsers) {
-    console.log(onlineUsers);
-    clients = onlineUsers;
     let temp = '';
     for(u in onlineUsers){
         temp += '<li>'+'<span style=\"color:' + '#'+onlineUsers[u] + '\">' + u +'</li>';
@@ -121,11 +121,8 @@ socket.on('updateAll', function(socketData){
             }
         }
         else if (socketData.flag === 1){
-            if (c === socketData.socketID) {
-                clients[socketData.socketID] = socketData.newColor;
-            }
-            else if (c === socketData.oldName){
-                clients[socketData.oldName] = socketData.newColor;
+            if (c === socketData.name) {
+                clients[socketData.name] = socketData.newColor;
             }
         }
     }

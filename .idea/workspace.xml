@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2ff3734-4fb4-4e2a-aa8a-cadfb1f53596" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
-              <caret line="68" column="44" selection-start-line="68" selection-start-column="44" selection-end-line="68" selection-end-column="44" />
+            <state relative-caret-position="-225">
+              <caret line="70" column="45" lean-forward="true" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -30,13 +29,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="143" column="76" lean-forward="true" selection-start-line="143" selection-start-column="76" selection-end-line="143" selection-end-column="76" />
+            <state relative-caret-position="355">
+              <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#p#0;n#strong#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#li#0;n#!!top" expanded="true" />
-                <marker date="1552097558218" expanded="true" signature="5036:5193" ph="..." />
+                <marker date="1552103029701" expanded="true" signature="4914:5071" ph="..." />
               </folding>
             </state>
           </provider>
@@ -54,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+            <state relative-caret-position="-580">
+              <caret line="2" column="99" selection-start-line="2" selection-start-column="99" selection-end-line="2" selection-end-column="99" />
             </state>
           </provider>
         </entry>
@@ -64,8 +63,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>font</find>
-      <find>overflow</find>
       <find>scroll</find>
       <find>UPDATEonline</find>
       <find>initc</find>
@@ -81,7 +78,6 @@
       <find>cookiefound</find>
       <find>cookiesf</find>
       <find>cookie</find>
-      <find>io.emit</find>
       <find>onlinehtml</find>
       <find>console.log</find>
       <find>updateonline</find>
@@ -94,6 +90,9 @@
       <find>update</find>
       <find>onlinelist</find>
       <find>onlineList</find>
+      <find>io.emit</find>
+      <find>socket.emit</find>
+      <find>clientColor</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -108,8 +107,8 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/client/index.html" />
         <option value="$PROJECT_DIR$/client/style.css" />
-        <option value="$PROJECT_DIR$/client/chat.js" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/client/chat.js" />
       </list>
     </option>
   </component>
@@ -169,36 +168,17 @@
       <updated>1551733804020</updated>
       <workItem from="1551733805493" duration="3965000" />
       <workItem from="1551834306282" duration="2000" />
-      <workItem from="1551834521279" duration="51416000" />
+      <workItem from="1551834521279" duration="54986000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55383000" />
+    <option name="totallyTimeSpent" value="58953000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.021141648" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-    <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.021141648" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -216,7 +196,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -238,6 +218,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-580">
+          <caret line="2" column="99" selection-start-line="2" selection-start-column="99" selection-end-line="2" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -245,29 +232,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="68" column="44" selection-start-line="68" selection-start-column="44" selection-end-line="68" selection-end-column="44" />
+        <state relative-caret-position="-225">
+          <caret line="70" column="45" lean-forward="true" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/chat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="143" column="76" lean-forward="true" selection-start-line="143" selection-start-column="76" selection-end-line="143" selection-end-column="76" />
+        <state relative-caret-position="355">
+          <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#span#0;n#p#0;n#strong#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#li#0;n#!!top" expanded="true" />
-            <marker date="1552097558218" expanded="true" signature="5036:5193" ph="..." />
+            <marker date="1552103029701" expanded="true" signature="4914:5071" ph="..." />
           </folding>
         </state>
       </provider>

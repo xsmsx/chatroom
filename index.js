@@ -42,52 +42,73 @@ io.on('connection', function(socket){
   clientNames[socket.id] = socket.id;
   clientColors[socket.id] = clientColor;
 
-  // resume session if client cookie found & update online list
-  socket.on('hasCookie', function(cookieData){
-    for (n in clientNames){
-      if (n === cookieData.serverUser){
-        delete clientNames[n];
-        delete clientColors[n];
-        clientNames[cookieData.serverUser] = cookieData.savedUsername;
-        clientColors[cookieData.savedUsername] = cookieData.savedColor;
-      }
-    }
+  // for new session: update online list
+  socket.on('noCookie', function(){
     console.log(" ");
-    console.log("resuming session for return user: ", cookieData.savedUsername);
+    console.log("NEW session for new user: ", socket.id);
+    console.log("clientColors BEFORE COOKIE:");
+    console.log(clientColors);
+    console.log("BEFORE COOKIE:");
+    console.log(clientNames);
+    clientColors[socket.id] = clientColor;
+    clientNames[socket.id] = socket.id;
+
+    io.emit("onlineList", clientColors);
     console.log("clientColors after cookie:");
     console.log(clientColors);
     console.log("clientNames after cookie:");
+    console.log(clientNames);
+  });
+
+  // resume session if client cookie found & update online list
+  socket.on('hasCookie', function(cookieData){
+    console.log(" ");
+    console.log("resuming session for returning user: ", cookieData.savedUsername);
+    console.log("clientColors BEFORE COOKIE:");
+    console.log(clientColors);
+    console.log("clientNames BEFORE COOKIE:");
+    console.log(clientNames);
+    for (c in clientColors){
+      if (c === cookieData.serverUser){
+        delete clientColors[c];
+        clientColors[cookieData.savedUsername] = cookieData.savedColor;
+      }
+    }
+    for (n in clientNames){
+      if (n === cookieData.serverUser){
+        console.log("~~~~~~~~~~~~~~~~~");
+        console.log("n is ", n);
+        console.log("serverUser is", cookieData.serverUser);
+        console.log("~~~~~~~~~~~~~~~~~");
+
+        delete clientNames[n];
+       // delete clientColors[n];
+        clientNames[cookieData.serverUser] = cookieData.savedUsername;
+       // clientColors[cookieData.savedUsername] = cookieData.savedColor;
+      }
+    }
+    console.log("clientColors AFTER COOKIE:");
+    console.log(clientColors);
+    console.log("clientNames AFTER COOKIE:");
     console.log(clientNames);
     io.emit("onlineList", clientColors);
   });
 
-  // update online list
-  socket.on('noCookie', function(){
-    clientColors[socket.id] = clientColor;
-    io.emit("onlineList", clientColors);
-    console.log(" ");
-    console.log("NEW session for new user: ", socket.id);
-    console.log("clientColors after cookie:");
-    console.log(clientColors);
-    console.log("clientNames after cookie:");
-    console.log(clientNames);
-  });
 
   // delete user from the managed online lists on disconnect
   socket.on('disconnect', function() {
     console.log('user disconnected, socket id: ' + socket.id);
-    console.log("clientColors before:");
+    console.log("clientColors before DELETE:");
     console.log(clientColors);
-    console.log("clientNames before:");
+    console.log("clientNames before DELETE:");
     console.log(clientNames);
     let temp = clientNames[socket.id];
     delete clientColors[temp];
     delete clientNames[socket.id];
-    console.log("clientColors after:");
+    console.log("clientColors after DELETE:");
     console.log(clientColors);
-    console.log("clientNames after:");
+    console.log("clientNames after DELETE:");
     console.log(clientNames);
-    console.log("deleting user from online list...");
     io.emit("onlineList", clientColors);
   });
 

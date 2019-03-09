@@ -27,10 +27,10 @@ socket.on('init', function(serverData) {
             serverUser: serverData.socketID,
             serverColor: serverData.color
         });
+        return;
     }
     else{
         socket.emit('noCookie',{});
-        console.log("TEST!!!");
         username.innerHTML ='<p> Welcome! You are user  <strong>'+ serverData.socketID +'</strong></p>';
         username.scrollTo(0,document.body.scrollHeight);
         thisUser = serverData.socketID;
@@ -38,6 +38,7 @@ socket.on('init', function(serverData) {
         document.cookie = "myName=" + serverData.socketID;
         document.cookie = "myColor=" + serverData.color;
         socketID = serverData.user;
+        console.log(document.cookie);
     }
 });
 

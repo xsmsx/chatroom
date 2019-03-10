@@ -18,6 +18,11 @@ socket.on('init', function(serverData) {
     // if has cookie
     if(savedUsername){
         username.innerHTML ='<p> Welcome back! You are user  <strong>'+ savedUsername +'</strong></p>';
+      //  chatLog.scrollTo(0,chatLog.scrollHeight);
+        // let elem = document.getElementById('messages');
+        // elem.scrollTop = elem.scrollHeight;
+        // username.scrollTo(0,document.body.scrollHeight);
+
         thisUser = savedUsername;
         thisColor = '#'+ savedColor;
         socketID = serverData.socketID;
@@ -32,12 +37,15 @@ socket.on('init', function(serverData) {
     else{
         socket.emit('noCookie',{});
         username.innerHTML ='<p> Welcome! You are user  <strong>'+ serverData.socketID +'</strong></p>';
-        username.scrollTo(0,document.body.scrollHeight);
+      //  username.scrollTo(0,document.body.scrollHeight);
+        // chatLog.scrollTo(0,chatLog.scrollHeight);
+        // let elem = document.getElementById('messages');
+        // elem.scrollTop = elem.scrollHeight;
         thisUser = serverData.socketID;
         thisColor = '#'+ serverData.color;
         document.cookie = "myName=" + serverData.socketID;
         document.cookie = "myColor=" + serverData.color;
-        socketID = serverData.user;
+        socketID = serverData.socketID;
         console.log(document.cookie);
     }
 });
@@ -101,6 +109,9 @@ socket.on('chat message', function(msg){
     else{
         chatLog.innerHTML += '<p>'+timestamp+" "+'<span style=\"color:' + msg.color + '\">' + msg.user + '</span>' +" "+ msg.newMessage + '</p>';
     }
+    // let elem = document.getElementById('messages');
+    // elem.scrollTop = elem.scrollHeight;
+    // username.scrollTo(0,document.body.scrollHeight);
 });
 
 // update onine user list
@@ -137,8 +148,7 @@ socket.on('updateAll', function(socketData){
 function changeName() {
     let newName = String(arguments[0]);
     delete clients[thisUser];
-    thisUser = newName;
-    clients[thisUser] = thisColor;
+    clients[newName] = thisColor;
     socket.emit('update',{
         flag: 0,
         socketID: socketID,
@@ -146,6 +156,7 @@ function changeName() {
         oldName: thisUser,
         clients: clients
     });
+    thisUser = newName;
     document.cookie = "myName=" + newName; //update cookie with new username
     username.innerHTML ='<p> Welcome! You are user  <strong>'+ newName+'</strong></p>';
 }

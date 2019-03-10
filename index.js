@@ -44,33 +44,49 @@ io.on('connection', function(socket){
 
   // for new session: update online list
   socket.on('noCookie', function(){
+    console.log("no cookie!");
     clientColors[socket.id] = '#'+clientColor;
     clientNames[socket.id] = socket.id;
+    console.log("client colors before updating: ", clientColors);
     io.emit("onlineList", clientColors);
   });
 
   // resume session if client cookie found & update online list
   socket.on('hasCookie', function(cookieData){
+    console.log("Cookie found!");
+    console.log("client colors BEFORE FOR LOOP: ", clientColors);
+
     for (c in clientColors){
       if (c === cookieData.serverUser){
+        console.log("c: ", c);
         delete clientColors[c];
         clientColors[cookieData.savedUsername] = '#'+cookieData.savedColor;
+        console.log("client colors HERE: ", clientColors);
       }
     }
     for (n in clientNames){
       if (n === cookieData.serverUser){
         delete clientNames[n];
         clientNames[cookieData.serverUser] = cookieData.savedUsername;
+        clientColors[cookieData.savedUsername] = '#'+cookieData.savedColor;
+        console.log("client names HERE: ", clientNames);
       }
     }
+    console.log("client colors before updating: ", clientColors);
     io.emit("onlineList", clientColors);
   });
 
   // delete user from the managed online lists on disconnect
   socket.on('disconnect', function() {
+    console.log("A user disconnected!", clientColors);
+    console.log("online users names before disconnect: ", clientNames);
+    console.log("online users colors before disconnect: ", clientColors);
+
     let temp = clientNames[socket.id];
     delete clientColors[temp];
     delete clientNames[socket.id];
+    console.log("online users names after disconnect: ", clientNames);
+    console.log("online users colors after disconnect: ", clientColors);
     io.emit("onlineList", clientColors);
   });
 
@@ -86,6 +102,9 @@ io.on('connection', function(socket){
   socket.on('update', function(socketData){
     console.log("Change name or color called from"+ socketData.socketID);
     console.log(socketData);
+    console.log("client names before updating : ", clientNames);
+    console.log("client colors before updating: ", clientColors);
+
     clientNames[socketData.socketID] = socketData.newName;
     console.log("client names before updating online: ", clientNames);
     clientColors = socketData.clients;

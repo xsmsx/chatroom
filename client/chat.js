@@ -18,11 +18,8 @@ socket.on('init', function(serverData) {
     // if has cookie
     if(savedUsername){
         username.innerHTML ='<p> Welcome back! You are user  <strong>'+ savedUsername +'</strong></p>';
-      //  chatLog.scrollTo(0,chatLog.scrollHeight);
-        // let elem = document.getElementById('messages');
-        // elem.scrollTop = elem.scrollHeight;
-        // username.scrollTo(0,document.body.scrollHeight);
-
+        let elem = document.getElementById('messages');
+        elem.scrollTop = elem.scrollHeight;
         thisUser = savedUsername;
         thisColor = '#'+ savedColor;
         socketID = serverData.socketID;
@@ -37,10 +34,8 @@ socket.on('init', function(serverData) {
     else{
         socket.emit('noCookie',{});
         username.innerHTML ='<p> Welcome! You are user  <strong>'+ serverData.socketID +'</strong></p>';
-      //  username.scrollTo(0,document.body.scrollHeight);
-        // chatLog.scrollTo(0,chatLog.scrollHeight);
-        // let elem = document.getElementById('messages');
-        // elem.scrollTop = elem.scrollHeight;
+        let elem = document.getElementById('messages');
+        elem.scrollTop = elem.scrollHeight;
         thisUser = serverData.socketID;
         thisColor = '#'+ serverData.color;
         document.cookie = "myName=" + serverData.socketID;
@@ -109,9 +104,8 @@ socket.on('chat message', function(msg){
     else{
         chatLog.innerHTML += '<p>'+timestamp+" "+'<span style=\"color:' + msg.color + '\">' + msg.user + '</span>' +" "+ msg.newMessage + '</p>';
     }
-    // let elem = document.getElementById('messages');
-    // elem.scrollTop = elem.scrollHeight;
-    // username.scrollTo(0,document.body.scrollHeight);
+    let elem = document.getElementById('messages');
+    elem.scrollTop = elem.scrollHeight;
 });
 
 // update onine user list
